@@ -19,10 +19,8 @@ namespace winBank
         }
         void showdata()
         {
-            using (SqlConnection cn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(Properties.Settings.Default.conn))
             {
-
-                cn.ConnectionString = sqlcn;
                 cn.Open();
                 SqlDataAdapter da = new SqlDataAdapter("select * from 銀行帳戶", cn);
                 da.Fill(ds, "銀行帳戶");
@@ -31,7 +29,6 @@ namespace winBank
 
             }
         }
-        string sqlcn = @"Data Source=(LocalDB)\MSSQLLocalDB;" + "AttachDbFilename=|DataDirectory|ch18DB.mdf;" + "Integrated Security=True;";
         DataSet ds = new DataSet();
         DataTable dt;
         void clean()
@@ -50,9 +47,8 @@ namespace winBank
         private void btn_submit_Click(object sender, EventArgs e)
         {
             dt.Clear();
-            using (SqlConnection cn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(Properties.Settings.Default.conn))
             {
-                cn.ConnectionString = sqlcn;
                 cn.Open();
                 if (tb_account.Text != "" && tb_myaccount.Text != "" && tb_money.Text != "")
                 {
