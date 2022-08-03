@@ -1,0 +1,11 @@
+C:\C#\winBank\bin\Debug\winBank.exe.config
+C:\C#\winBank\bin\Debug\winBank.exe
+C:\C#\winBank\bin\Debug\winBank.pdb
+C:\C#\winBank\obj\Debug\winBank.csproj.AssemblyReference.cache
+C:\C#\winBank\obj\Debug\winBank.csproj.SuggestedBindingRedirects.cache
+C:\C#\winBank\obj\Debug\winBank.Form1.resources
+C:\C#\winBank\obj\Debug\winBank.Properties.Resources.resources
+C:\C#\winBank\obj\Debug\winBank.csproj.GenerateResource.cache
+C:\C#\winBank\obj\Debug\winBank.csproj.CoreCompileInputs.cache
+C:\C#\winBank\obj\Debug\winBank.exe
+C:\C#\winBank\obj\Debug\winBank.pdb

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winBank", "winBank.csproj", "{4A9B6B69-B351-486E-8646-09B0835D9030}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A9B6B69-B351-486E-8646-09B0835D9030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9B6B69-B351-486E-8646-09B0835D9030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9B6B69-B351-486E-8646-09B0835D9030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9B6B69-B351-486E-8646-09B0835D9030}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4142E70B-F2B9-4FAB-A89C-37560D2F059F}
+	EndGlobalSection
+EndGlobal
