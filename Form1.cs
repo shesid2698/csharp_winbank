@@ -38,7 +38,7 @@ namespace winBank
             tb_money.Text = "";
             ds.Clear();
         }
-     
+
         private void Form1_Load(object sender, EventArgs e)
         {
             showdata();
@@ -52,37 +52,39 @@ namespace winBank
                 cn.Open();
                 if (tb_account.Text != "" && tb_myaccount.Text != "" && tb_money.Text != "")
                 {
-                    SqlDataAdapter dacheck = new SqlDataAdapter($"select * from 銀行帳戶 where 帳號='{tb_myaccount.Text}'",cn);
-                    SqlDataAdapter dacheck2= new SqlDataAdapter($"select * from 銀行帳戶 where 帳號='{tb_account.Text}'", cn);
-                    dacheck.Fill(ds,"檢查帳號");
-                    dacheck2.Fill(ds,"檢查對方帳號");
+                    SqlDataAdapter dacheck = new SqlDataAdapter($"select * from 銀行帳戶 where 帳號='{tb_myaccount.Text}'", cn);
+                    SqlDataAdapter dacheck2 = new SqlDataAdapter($"select * from 銀行帳戶 where 帳號='{tb_account.Text}'", cn);
+                    dacheck.Fill(ds, "檢查帳號");
+                    dacheck2.Fill(ds, "檢查對方帳號");
                     DataTable dtcheck = ds.Tables["檢查帳號"];
                     DataTable dtcheck2 = ds.Tables["檢查對方帳號"];
-                    try
+
+                    if (dtcheck.Rows.Count != 0 && dtcheck2.Rows.Count != 0)
                     {
-                        if (dtcheck.Rows[0]["帳號"].ToString() != "" && dtcheck2.Rows[0]["帳號"].ToString() != "")
+                        if ((int)dtcheck.Rows[0]["餘額"] >= int.Parse(tb_money.Text))
                         {
-                            if ((int)dtcheck.Rows[0]["餘額"] >= int.Parse(tb_money.Text))
-                            {
-                                SqlDataAdapter daoutput = new SqlDataAdapter($"update 銀行帳戶 set 餘額-={tb_money.Text} where 帳號='{tb_myaccount.Text}'", cn);
-                                SqlDataAdapter dainput = new SqlDataAdapter($"update 銀行帳戶 set 餘額+={tb_money.Text} where 帳號='{tb_account.Text}'", cn);
-                                daoutput.Fill(ds, "轉出");
-                                dainput.Fill(ds, "轉入");
-                                MessageBox.Show("轉帳成功!!", "通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                clean();
-                            }
-                            else
-                            {
-                                MessageBox.Show("帳戶餘額不足!!");
-                                clean();
-                            }
+                            SqlDataAdapter daoutput = new SqlDataAdapter($"update 銀行帳戶 set 餘額-={tb_money.Text} where 帳號='{tb_myaccount.Text}'", cn);
+                            SqlDataAdapter dainput = new SqlDataAdapter($"update 銀行帳戶 set 餘額+={tb_money.Text} where 帳號='{tb_account.Text}'", cn);
+                            daoutput.Fill(ds, "轉出");
+                            dainput.Fill(ds, "轉入");
+                            MessageBox.Show("轉帳成功!!", "通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clean();
                         }
-                    }
-                    catch
+                        else
+                        {
+                            MessageBox.Show("帳戶餘額不足!!");
+                            clean();
+                        }
+                    }else if (dtcheck.Rows.Count != 0 && dtcheck2.Rows.Count == 0)
                     {
-                        MessageBox.Show("轉帳/目的帳號不存在");
+                        MessageBox.Show("目的帳號不存在","錯誤",MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                        clean();
+                    }else if(dtcheck2.Rows.Count != 0 && dtcheck.Rows.Count == 0)
+                    {
+                        MessageBox.Show("轉帳帳號不存在!", "錯誤", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                         clean();
                     }
+
 
                 }
                 else
